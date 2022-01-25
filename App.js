@@ -12,11 +12,12 @@ import {
   StyleSheet,
   Text,
 } from 'react-native';
+import SignInScreen from './src/screens/SignInScreen';
 
 const App = () => {
   return (
     <SafeAreaView style={styles.root}>
-      <Text>Hello World</Text>
+      <SignInScreen />
     </SafeAreaView>
   );
 };
