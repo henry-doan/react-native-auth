@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   input: {
-    minHeight: '5%',
+    minHeight: 40,
   },
 });
 
