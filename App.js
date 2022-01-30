@@ -16,6 +16,7 @@ import SignInScreen from './src/screens/SignInScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import ConfirmScreen from './src/screens/ConfirmScreen';
 import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen';
+import NewPasswordScreen from './src/screens/NewPasswordScreen';
 
 const App = () => {
   return (
@@ -23,7 +24,8 @@ const App = () => {
       {/* <SignInScreen /> */}
       {/* <SignUpScreen /> */}
       {/* <ConfirmScreen /> */}
-      <ForgotPasswordScreen />
+      {/* <ForgotPasswordScreen /> */}
+      <NewPasswordScreen />
     </SafeAreaView>
   );
 };
