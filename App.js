@@ -13,7 +13,7 @@ import {
   Text,
 } from 'react-native';
 import Navigation from './src/navigation';
-import { withAuthenticator } from 'aws-amplify-react-native';
+import { withAuthenticator, AmplifyTheme } from 'aws-amplify-react-native';
 import Amplify, { Auth } from 'aws-amplify';
 import config from './src/aws-exports';
 
@@ -70,4 +70,13 @@ const signUpConfig = {
   ]
 }
 
-export default withAuthenticator(App, { signUpConfig });
+const customTheme = {
+  ...AmplifyTheme,
+  button: {
+    ...AmplifyTheme.button,
+    backgroundColor: 'blue',
+    borderRadius: 10,
+  }
+};
+
+export default withAuthenticator(App, { signUpConfig, theme: customTheme });
