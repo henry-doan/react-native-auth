@@ -4,6 +4,7 @@ import Logo from '../../../assets/images/Logo.png';
 import CustomInput from '../../components/CustomInputs';
 import CustomButton from '../../components/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons';
+import { useNavigation } from '@react-navigation/native';
 
 const SignUpScreen = () => {
   const [username, setUsername] = useState('');
@@ -12,20 +13,25 @@ const SignUpScreen = () => {
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   
   const { height } = useWindowDimensions();
+  const navigation = useNavigation();
 
   const onSignUpPressed = () => {
-    console.warn("Sign up");
+    navigation.navigate('Confirm');
   }
 
   const onSignInPressed = () => {
-    console.warn("Sign in");
+    navigation.navigate('SignIn');
   }
 
   const onTermsPressed = () => {
     console.warn("Terms");
+    // TODO Create Terms page
+    // navigation.navigate('Terms');
   }
   const onPolicyPressed = () => {
     console.warn("Policy");
+    // TODO Create policy page
+    // navigation.navigate('Policy');
   }
 
   return (

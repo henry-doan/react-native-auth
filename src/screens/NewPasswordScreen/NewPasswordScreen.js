@@ -3,19 +3,21 @@ import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from '
 import Logo from '../../../assets/images/Logo.png';
 import CustomInput from '../../components/CustomInputs';
 import CustomButton from '../../components/CustomButton';
+import { useNavigation } from '@react-navigation/native';
 
 const NewPasswordScreen = () => {
   const [code, setCode] = useState('');
   const [password, setPassword] = useState('');
 
   const { height } = useWindowDimensions();
+  const navigation = useNavigation();
 
   const onForgotPasswordPressed = () => {
-    console.warn("Forgot Password");
+    navigation.navigate('Home');  
   }
 
   const onSignInPressed = () => {
-    console.warn("Sign In");
+    navigation.navigate('SignIn');
   }
 
   const onResendPressed = () => {

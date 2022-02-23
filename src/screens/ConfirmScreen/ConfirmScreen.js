@@ -3,22 +3,25 @@ import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from '
 import Logo from '../../../assets/images/Logo.png';
 import CustomInput from '../../components/CustomInputs';
 import CustomButton from '../../components/CustomButton';
+import { useNavigation } from '@react-navigation/native';
 
 const ConfirmScreen = () => {
   const [code, setCode] = useState('');
   
   const { height } = useWindowDimensions();
+  const navigation = useNavigation();
 
   const onConfirmPressed = () => {
-    console.warn("Sign up");
+    navigation.navigate('Home');
   }
 
   const onSignInPressed = () => {
-    console.warn("Sign in");
+    navigation.navigate('SignIn');
   }
 
   const onResendPressed = () => {
     console.warn("Resend");
+    // TODO Resend Code
   }
 
   return (
