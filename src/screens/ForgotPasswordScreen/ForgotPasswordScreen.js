@@ -1,18 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native';
 import Logo from '../../../assets/images/Logo.png';
 import CustomInput from '../../components/CustomInputs';
 import CustomButton from '../../components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
+import { Auth } from 'aws-amplify';
 
 const ForgotPasswordScreen = () => {
   const [username, setUsername] = useState('');
+  const [loading, setLoading] = useState(false);
   
   const { height } = useWindowDimensions();
   const navigation = useNavigation();
 
-  const onForgotPasswordPressed = () => {
-    navigation.navigate('NewPassword');
+  const onForgotPasswordPressed = async () => {
+    if (loading) {
+      return;
+    }
+    
+    setLoading(true);
+    
+    try {
+      const res = await Auth.forgotPassword(username)
+      console.log(res)
+      navigation.navigate('NewPassword', {username});
+      setUsername('')
+    } catch (e) {
+      Alert.alert('Oops', e.message);
+    }
+
+    setLoading(false);
   }
 
   const onSignInPressed = () => {

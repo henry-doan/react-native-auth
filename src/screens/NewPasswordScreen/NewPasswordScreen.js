@@ -4,24 +4,43 @@ import Logo from '../../../assets/images/Logo.png';
 import CustomInput from '../../components/CustomInputs';
 import CustomButton from '../../components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
+import { Auth } from 'aws-amplify';
+import { useRoute } from '@react-navigation/native';
 
 const NewPasswordScreen = () => {
   const [code, setCode] = useState('');
   const [password, setPassword] = useState('');
 
+  const [loading, setLoading] = useState(false);
+
   const { height } = useWindowDimensions();
   const navigation = useNavigation();
+  const route = useRoute();
 
-  const onForgotPasswordPressed = () => {
-    navigation.navigate('Home');  
+  const onForgotPasswordPressed = async () => {
+    
+    if (loading) {
+      return;
+    }
+    
+    setLoading(true);
+    
+    try {
+      const username = route?.params?.username
+
+      await Auth.forgotPasswordSubmit(username, code, password)
+      navigation.navigate('SignIn'); 
+      setCode('')
+      setPassword('')
+    } catch (e) {
+      Alert.alert('Oops', e.message);
+    }
+
+    setLoading(false); 
   }
 
   const onSignInPressed = () => {
     navigation.navigate('SignIn');
-  }
-
-  const onResendPressed = () => {
-    console.warn("Resend");
   }
 
   return (
@@ -47,11 +66,6 @@ const NewPasswordScreen = () => {
         <CustomButton
           text="Reset"
           onPress={onForgotPasswordPressed}
-        />
-        <CustomButton
-          text="Resend Code"
-          onPress={onResendPressed}
-          type="Secondary"
         />
         <CustomButton
           text="Back to Sign In"
