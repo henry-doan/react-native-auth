@@ -1,27 +1,61 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView, Alert } from 'react-native';
 import Logo from '../../../assets/images/Logo.png';
 import CustomInput from '../../components/CustomInputs';
 import CustomButton from '../../components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
+import { Auth } from 'aws-amplify';
 
 const ConfirmScreen = () => {
   const [code, setCode] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const route = useRoute();
   
   const { height } = useWindowDimensions();
   const navigation = useNavigation();
 
-  const onConfirmPressed = () => {
-    navigation.navigate('Home');
+  const onConfirmPressed = async () => {
+    if (loading) {
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const username = route?.params?.username
+      await Auth.confirmSignUp(username, code)
+      navigation.navigate('SignIn');
+      setCode('')
+    } catch (e) {
+      Alert.alert('Oops', e.message);
+    }
+
+    setLoading(false);
   }
 
   const onSignInPressed = () => {
     navigation.navigate('SignIn');
   }
 
-  const onResendPressed = () => {
-    console.warn("Resend");
-    // TODO Resend Code
+  const onResendPressed = async () => {
+    if (loading) {
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const username = route?.params?.username
+      await Auth.resendSignUp(username)
+      Alert.alert('Sucess', 'Code was resent to your email');
+      setCode('')
+    } catch (e) {
+      Alert.alert('Oops', e.message);
+    }
+
+    setLoading(false);
   }
 
   return (

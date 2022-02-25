@@ -26,7 +26,7 @@ const SignUpScreen = () => {
     setLoading(true);
 
     try {
-      const res = await Auth.signUp({
+      await Auth.signUp({
         username,
         password,
         attributes:{
@@ -35,7 +35,7 @@ const SignUpScreen = () => {
           preferred_username: username,
         }
       });
-      navigation.navigate('Confirm');
+      navigation.navigate('Confirm', {username});
       setName('')
       setUsername('')
       setEmail('')
