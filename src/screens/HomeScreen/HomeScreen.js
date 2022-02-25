@@ -13,7 +13,7 @@ const Home = () => {
       // validate user
       const res = await Auth.signOut();
       console.log(res)
-      navigation.navigate('SignIn');
+      // navigation.navigate('SignIn');
     } catch (e) {
       console.log(e)
       Alert.alert('Oops', e.message);
