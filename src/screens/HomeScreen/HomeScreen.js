@@ -25,11 +25,19 @@ const Home = () => {
       <Text style={{ fontSize: 24, alignSelf: 'center' }}>
         Home Screen
       </Text>
-      <CustomButton
-        text="Logout"
+      <Text
         onPress={onSignOutPressed}
-        type="Tertiary"
-      />
+        style={{
+          width: '100%',
+          textAlign: 'center',
+          color: 'red',
+          marginTop: 'auto',
+          marginVertical: 20,
+          fontSize: 20,
+        }}
+      >
+        Logout
+      </Text>
     </View>
   )
 }
