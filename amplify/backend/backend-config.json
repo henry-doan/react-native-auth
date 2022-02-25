@@ -10,11 +10,11 @@
         "usernameAttributes": [],
         "signupAttributes": [
           "PREFERRED_USERNAME",
-          "EMAIL",
-          "NAME"
+          "NAME",
+          "EMAIL"
         ],
         "passwordProtectionSettings": {
-          "passwordPolicyMinLength": 8,
+          "passwordPolicyMinLength": 7,
           "passwordPolicyCharacters": []
         },
         "mfaConfiguration": "OFF",

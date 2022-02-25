@@ -3,7 +3,7 @@
   "cognitoConfig": {
     "identityPoolName": "testAuthIdentityPool",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "reactn83c2628b",
+    "resourceNameTruncated": "reactn71801a3a",
     "userPoolName": "ReactNativeAuth",
     "autoVerifiedAttributes": [
       "email"
@@ -14,24 +14,24 @@
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "Forgot password code: {####}",
-    "emailVerificationMessage": "Forgot password code: {####}",
+    "emailVerificationSubject": "React Native Auth Code: {####}",
+    "emailVerificationMessage": "React Native Auth Code:: {####}",
     "defaultPasswordPolicy": false,
-    "passwordPolicyMinLength": 8,
+    "passwordPolicyMinLength": 7,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
       "preferred_username",
-      "email",
-      "name"
+      "name",
+      "email"
     ],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [],
     "userpoolClientReadAttributes": [],
-    "userpoolClientLambdaRole": "ReactN83c2628b_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "ReactN71801a3a_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "83c2628b",
+    "sharedId": "71801a3a",
     "resourceName": "ReactNativeAuth",
     "authSelections": "identityPoolAndUserPool",
     "serviceName": "Cognito",

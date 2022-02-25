@@ -1,22 +1,51 @@
 import React, { useState } from 'react';
-import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView } from 'react-native';
+import { View, Text, Image, StyleSheet, useWindowDimensions, ScrollView, Alert } from 'react-native';
 import Logo from '../../../assets/images/Logo.png';
 import CustomInput from '../../components/CustomInputs';
 import CustomButton from '../../components/CustomButton';
 import SocialSignInButtons from '../../components/SocialSignInButtons';
 import { useNavigation } from '@react-navigation/native';
+import { Auth } from 'aws-amplify';
 
 const SignUpScreen = () => {
+  const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
-  
+  const [loading, setLoading] = useState(false);
+
   const { height } = useWindowDimensions();
   const navigation = useNavigation();
 
-  const onSignUpPressed = () => {
-    navigation.navigate('Confirm');
+  const onSignUpPressed = async () => {
+    if (loading) {
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const res = await Auth.signUp({
+        username,
+        password,
+        attributes:{
+          email,
+          name, 
+          preferred_username: username,
+        }
+      });
+      navigation.navigate('Confirm');
+      setName('')
+      setUsername('')
+      setEmail('')
+      setPassword('')
+      setPasswordConfirmation('')
+    } catch (e) {
+      Alert.alert('Oops', e.message);
+    }
+
+    setLoading(false);
   }
 
   const onSignInPressed = () => {
@@ -43,6 +72,11 @@ const SignUpScreen = () => {
           resizeMode="contain" 
         />
         <Text style={styles.title}>Create an Account</Text>
+        <CustomInput 
+          placeholder="Name"
+          value={name}
+          setValue={setName}
+        />
         <CustomInput 
           placeholder="Username"
           value={username}
